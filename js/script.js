@@ -311,6 +311,9 @@ function initializeNavigation() {
     }
     // Removed scrollIntoView for active stage
   }
+  // Expose navigateToStage globally for scroll logic
+  window.navigateToStage = navigateToStage;
+
   // Add click handlers to nav circles
   navCircles.forEach((circle) => {
     circle.addEventListener('click', function() {
@@ -516,30 +519,30 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Add end journey button functionality
+// Make the end journey button always visible
+
 document.addEventListener('DOMContentLoaded', function() {
-  // Add end journey button functionality
   const endJourneyBtn = document.getElementById('end-journey-btn');
   if (endJourneyBtn) {
+    endJourneyBtn.style.display = 'block'; // Always visible
+    endJourneyBtn.classList.add('visible'); // In case you use a visible class for animation
     endJourneyBtn.addEventListener('click', function() {
       // Hide all journey columns
       const journeyColumns = document.querySelectorAll('.journey-column');
       journeyColumns.forEach(column => {
         column.style.display = 'none';
       });
-      
       // Show only the conclusion
       const journeyConclusion = document.querySelector('.journey-conclusion');
       if (journeyConclusion) {
         journeyConclusion.style.display = 'block';
         journeyConclusion.scrollIntoView({ behavior: 'smooth' });
       }
-      
       // Update any headers if needed
       const fixedHeaders = document.querySelector('.fixed-headers');
       if (fixedHeaders) {
         fixedHeaders.querySelector('h2').textContent = 'Journey Conclusion';
       }
-      
       // Remove the button after clicking
       this.remove();
     });
@@ -724,3 +727,42 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
+
+// --- Smooth scroll-based stage activation ---
+function setupScrollStageActivation() {
+  const navCircles = document.querySelectorAll('.nav-circle');
+  const femaleStages = document.querySelector('.journey-column.female').querySelectorAll('.stage');
+  const maleStages = document.querySelector('.journey-column.male').querySelectorAll('.stage');
+  let lastActiveIndex = 0;
+  let isProgrammaticNav = false;
+
+  function onScroll() {
+    if (isProgrammaticNav) return;
+    const viewportCenter = window.innerHeight / 2;
+    let closestIndex = 0;
+    let minDistance = Infinity;
+    for (let i = 0; i < femaleStages.length; i++) {
+      const rect = femaleStages[i].getBoundingClientRect();
+      const stageCenter = rect.top + rect.height / 2;
+      const distance = Math.abs(stageCenter - viewportCenter);
+      if (distance < minDistance) {
+        minDistance = distance;
+        closestIndex = i;
+      }
+    }
+    if (lastActiveIndex !== closestIndex) {
+      if (typeof window.navigateToStage === 'function') {
+        isProgrammaticNav = true;
+        window.navigateToStage(closestIndex, false);
+        setTimeout(() => { isProgrammaticNav = false; }, 100);
+      }
+      lastActiveIndex = closestIndex;
+    }
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+}
+
+// Call after DOM and navigation are ready
+setTimeout(setupScrollStageActivation, 1500);
