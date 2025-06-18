@@ -1,5 +1,139 @@
-body { font-family: Arial, sans-serif; background: #f7f7f7; margin: 0; padding: 20px; }
-   
+body {
+  font-family: 'Inter', 'Roboto', 'Open Sans', Arial, sans-serif;
+  background: linear-gradient(120deg, #f8fafc 0%, #e9eafc 100%);
+  color: #23272f;
+  letter-spacing: 0.01em;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Inter', 'Roboto', 'Open Sans', Arial, sans-serif;
+  font-weight: 700;
+  color: #23272f;
+  letter-spacing: 0.01em;
+}
+
+.story-intro, .journey-conclusion, .stage-info, .reflection, .stat, .dropoff, .pay-gap, .harassment-stat, .societal-expectations, .action-steps, .micro-actions-note {
+  color: #23272f;
+}
+
+.stage-info {
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(91,134,229,0.07);
+  border-radius: 12px;
+  padding: 18px 20px;
+  font-size: 1.08em;
+  margin-bottom: 8px;
+}
+
+.stage {
+  margin-bottom: 36px;
+  border-radius: 14px;
+  box-shadow: 0 2px 10px rgba(91,134,229,0.06);
+  background: rgba(255,255,255,0.95);
+}
+
+.persona {
+  color: #5b86e5;
+  font-size: 1.08em;
+  border-bottom: 1px solid #e0e7ff;
+  padding-bottom: 8px;
+  margin-bottom: 10px;
+}
+
+.narrative {
+  color: #23272f;
+  font-size: 1em;
+  margin-bottom: 8px;
+}
+
+.stat, .dropoff, .pay-gap, .harassment-stat, .societal-expectations {
+  font-size: 0.98em;
+  margin-bottom: 6px;
+}
+
+.reflection {
+  background: #f3f7fa;
+  border-left: 4px solid #5b86e5;
+  color: #3a3a3a;
+  font-size: 0.97em;
+  border-radius: 8px;
+  margin-top: 10px;
+  padding: 10px 16px;
+}
+
+.column-header {
+  font-size: 1.35em;
+  background: linear-gradient(90deg, #e0e7ff 0%, #fff 100%);
+  color: #23272f;
+  border-radius: 10px 10px 0 0;
+  box-shadow: 0 2px 8px rgba(91,134,229,0.08);
+  border-bottom: 2px solid #e0e7ff;
+}
+
+.journey-column.female {
+  background: linear-gradient(120deg, #e3f0ff 0%, #f7faff 100%);
+  border-left: 5px solid #5b86e5;
+}
+
+.journey-column.male {
+  background: linear-gradient(120deg, #ffe3f0 0%, #fff7fa 100%);
+  border-right: 5px solid #db7093;
+}
+
+.nav-circle {
+  background: linear-gradient(135deg, #5b86e5 60%, #9f47e8 100%);
+  color: #fff;
+  border: 2px solid #fff;
+  box-shadow: 0 4px 16px rgba(91,134,229,0.13);
+  font-size: 1.08em;
+}
+
+.nav-circle.active, .nav-circle:hover {
+  background: linear-gradient(135deg, #23272f 60%, #5b86e5 100%);
+  color: #fff;
+  border: 2px solid #5b86e5;
+}
+
+.nav-label {
+  color: #fff;
+  font-weight: 600;
+  font-size: 1em;
+}
+
+.start-journey-btn, .end-journey-btn-large, .back-to-journey-btn {
+  background: linear-gradient(90deg, #5b86e5 0%, #9f47e8 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-size: 1.1em;
+  font-weight: 600;
+  padding: 14px 36px;
+  margin: 18px 0;
+  box-shadow: 0 4px 16px rgba(91,134,229,0.13);
+  transition: background 0.3s, transform 0.2s;
+}
+.start-journey-btn:hover, .end-journey-btn-large:hover, .back-to-journey-btn:hover {
+  background: linear-gradient(90deg, #23272f 0%, #5b86e5 100%);
+  transform: translateY(-2px) scale(1.04);
+}
+
+/* Make sure all text is highly readable */
+.stage-info, .journey-conclusion, .story-intro, .action-steps, .micro-actions-note {
+  color: #23272f;
+  text-shadow: 0 1px 2px rgba(255,255,255,0.05);
+}
+
+/* Add Google Fonts for Inter */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+/* --- End Modern Design Enhancements --- */
+body {
+  font-family: Arial, sans-serif;
+  background: #f9f9f9;
+  margin: 0;
+  padding: 20px;
+}
+
 /* Container for the two flows */
 .journey-container {
   display: flex;
@@ -12,71 +146,85 @@ body { font-family: Arial, sans-serif; background: #f7f7f7; margin: 0; padding: 
 .journey-column {
   flex: 1;
   padding: 15px;
-  border-radius: 10px;
-  position: relative; /* Add this line */
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  position: relative;
 }
 
 .journey-column.female {
-  background-color: rgba(219, 112, 147, 0.05);
-  border-right: 4px solid steelblue;
-   border-left: 4px solid steelblue;
-  
-  
+  background-color: #f0f6ff;
+  border-left: 4px solid #4682b4;
+  border-right: none;
 }
 
 .journey-column.male {
-  background-color: rgba(70, 130, 180, 0.05);
-  border-left: 4px solid palevioletred;
-  border-right: 4px solid palevioletred;
-
+  background-color: #fff6fa;
+  border-right: 4px solid #db7093;
+  border-left: none;
 }
 
 /* Column headers */
 .column-header {
   text-align: center;
-  font-size: 1.5em;
+  font-size: 1.3em;
   margin-bottom: 20px;
   padding-bottom: 10px;
-  border-bottom: 2px solid #ddd;
-  position: sticky; /* Add sticky positioning */
-  top: 0; /* Stick to the top */
-  z-index: 10; /* Ensure it is above other content */
-  background-color: #fff; /* Or match your page background */
-  padding: 10px 0; /* Adjust padding */
+  border-bottom: 2px solid #eee;
+  background-color: #fff;
+  color: #333;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .male .column-header {
-  color: palevioletred;
+  color: #db7093;
 }
 
 .female .column-header {
-  color: steelblue;
+  color: #4682b4;
 }
 
 /* Existing styles with minor modifications */
-.stage { 
-  display: flex; 
-  align-items: center; 
-  margin-bottom: 30px; 
-  position: relative; /* Add this line */
-  z-index: 8; /* Ensure stage content is above other elements */
+.stage {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  position: relative;
+  z-index: 8;
 }
 
-.stage-info { 
-  background: #fff; 
-  padding: 15px; 
-  border-radius: 8px; 
-  box-shadow: 0 2px 6px rgba(0,0,0,0.07); 
-  flex: 1; 
+.stage-info {
+  background: #f9f9f9;
+  padding: 12px;
+  border-radius: 6px;
+  box-shadow: none;
   font-size: 16px;
 }
 
-.dropoff { font-weight: bold; margin-top: 5px; }
-.female .dropoff { color: #d62828; }
-.male .dropoff { color: #9c2828; }
+.dropoff {
+  font-weight: bold;
+  margin-top: 5px;
+}
 
-.stat { color: #555; margin-top: 8px; font-style: italic; }
-.highlight { color: #d62828; font-weight: bold; }
+.female .dropoff {
+  color: #d62828;
+}
+
+.male .dropoff {
+  color: #db7093;
+}
+
+.stat {
+  color: #555;
+  margin-top: 8px;
+  font-style: italic;
+}
+
+.highlight {
+  color: #d62828;
+  font-weight: bold;
+}
 
 
 @keyframes bounce {
@@ -84,7 +232,10 @@ body { font-family: Arial, sans-serif; background: #f7f7f7; margin: 0; padding: 
   50% { transform: translateY(10px); }
 }
 
-h1 { text-align: center; margin-bottom: 10px; }
+h1 {
+  text-align: center;
+  margin-bottom: 10px;
+}
 
 /* Person figures for visualization */
 .figures-container {
@@ -112,19 +263,15 @@ h1 { text-align: center; margin-bottom: 10px; }
 }
 
 .financial-label {
-  text-align: center;
-  font-size: 0.8em;
-  color: #666;
-  margin-top: 5px;
+  color: #4682b4;
+  font-weight: bold;
 }
 
 .pay-gap {
-  margin-top: 10px;
-  padding: 5px 8px;
-  background: #ffe8e8;
+  background: #fff0f0;
   border-radius: 4px;
-  font-size: 0.9em;
   border-left: 3px solid #d62828;
+  color: #d62828;
 }
 
 /* New storytelling elements */
@@ -139,8 +286,9 @@ h1 { text-align: center; margin-bottom: 10px; }
 .persona {
   font-style: italic;
   margin-bottom: 10px;
-  border-bottom: 1px dotted #ccc;
+  border-bottom: 1px dotted #ddd;
   padding-bottom: 8px;
+  color: #4682b4;
 }
 
 .narrative {
@@ -149,12 +297,13 @@ h1 { text-align: center; margin-bottom: 10px; }
 }
 
 .reflection {
-  background: #f8f8f8;
-  padding: 8px;
+  background: #f5f5f5;
   border-radius: 4px;
+  border-left: 3px solid #bbb;
+  color: #555;
+  padding: 8px;
   margin-top: 8px;
   font-size: 0.9em;
-  border-left: 3px solid #999;
 }
 
 .journey-conclusion {
@@ -168,7 +317,7 @@ h1 { text-align: center; margin-bottom: 10px; }
 
 /* Add these styles to hide the conclusion initially */
 .journey-conclusion {
-  display: none; /* Initially hide the conclusion */
+  display: none;
   animation: fadeIn 0.8s ease-in-out when shown;
 }
 
@@ -186,296 +335,289 @@ h1 { text-align: center; margin-bottom: 10px; }
 
 /* Adding a new style for harassment data */
 .harassment-stat {
+  background: #f7f0ff;
+  border-radius: 4px;
+  border-left: 3px solid #a084ee;
+  color: #a084ee;
   margin-top: 10px;
   padding: 5px 8px;
-  background: #f2e6ff;
-  border-radius: 4px;
   font-size: 0.9em;
-  border-left: 3px solid #6a0dad;
 }
 
 /* Adding style for societal expectations */
 .societal-expectations {
+  background: #f0f8ff;
+  border-radius: 4px;
+  border-left: 3px solid #4682b4;
+  color: #4682b4;
   margin-top: 10px;
   padding: 5px 8px;
-  background: #e6f7ff;
-  border-radius: 4px;
   font-size: 0.9em;
-  border-left: 3px solid #0077b6;
 }
 
-
-        .title {
-            text-align: center;
-            color: #333;
-            font-size: 2.5em;
-            margin-bottom: 30px;
-            font-weight: 300;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .controls {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-        }
-
-        .input-group {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .input-group label {
-            font-weight: bold;
-            margin-bottom: 8px;
-            color: #555;
-        }
-
-        .input-group input {
-            padding: 10px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            font-size: 16px;
-            width: 80px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .input-group input:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
-        }
-
-        .chart-container {
-            display: flex;
-            justify-content: space-around;
-            align-items: end;
-            gap: 30px;
-            margin-top: 40px;
-            flex-wrap: wrap;
-        }
-        .chart-containerBoy {
-            display: flex;
-            justify-content: space-around;
-            align-items: end;
-            gap: 30px;
-            margin-top: 40px;
-            flex-wrap: wrap;
-        }
-
-        .bar-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-        }
-
-        .girl-silhouette {
-            width: 120px;
-            height: 200px;
-            position: relative;
-            margin-bottom: 15px;
-        }
-
-        .girl-outline {
-            width: 100%;
-            height: 100%;
-            fill: #88348e;
-            stroke: #333;
-            stroke-width: 2;
-        }
-
-        .girl-fill {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
-            overflow: hidden;
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .girl-fill svg {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            bottom: 0;
-        }
-
-        .percentage-label {
-            font-size: 1.4em;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 8px;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-        }
-
-        .category-label {
-            font-size: 1.1em;
-            color: #666;
-            font-weight: 500;
-        }
-
-        .legend {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 30px;
-            flex-wrap: wrap;
-        }
-
-        .legend-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .legend-color {
-            width: 20px;
-            height: 20px;
-            border-radius: 4px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
-        .girl-outline-container {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
+.title {
+  text-align: center;
+  color: #333;
+  font-size: 2.5em;
+  margin-bottom: 30px;
+  font-weight: 300;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.girl-outline-container svg {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    bottom: 0;
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input-group label {
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #555;
+}
+
+.input-group input {
+  padding: 10px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  width: 80px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
+}
+
+.chart-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: end;
+  gap: 30px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+
+.chart-containerBoy {
+  display: flex;
+  justify-content: space-around;
+  align-items: end;
+  gap: 30px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+
+.bar-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.girl-silhouette {
+  width: 120px;
+  height: 200px;
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.girl-outline {
+  width: 100%;
+  height: 100%;
+  fill: #88348e;
+  stroke: #333;
+  stroke-width: 2;
 }
 
 .girl-fill {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    overflow: hidden;
-    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 2;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 2;
 }
 
-       .boy-silhouette {
-            width: 120px;
-            height: 200px;
-            position: relative;
-            margin-bottom: 15px;
-        }
-
-        .boy-outline {
-            width: 100%;
-            height: 100%;
-            fill: #88348e;
-            stroke: #333;
-            stroke-width: 2;
-        }
-
-        .boy-fill {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
-            overflow: hidden;
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .boy-fill svg {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            bottom: 0;
-        }
-        .boy-outline-container {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
+.girl-fill.animate-fill {
+  animation: fill-animate 2.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-.boy-outline-container svg {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    bottom: 0;
+@keyframes fill-animate {
+  from {
+    clip-path: inset(var(--start-inset) 0 0 0);
+  }
+  to {
+    clip-path: inset(var(--target-inset) 0 0 0);
+  }
+}
+
+.girl-fill svg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+.percentage-label {
+  font-size: 1.4em;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.category-label {
+  font-size: 1.1em;
+  color: #666;
+  font-weight: 500;
+}
+
+.legend {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.legend-color {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.girl-outline-container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.girl-outline-container svg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+/* Boy styles (unchanged) */
+.boy-silhouette {
+  width: 120px;
+  height: 200px;
+  position: relative;
+  margin-bottom: 15px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.boy-outline {
+  width: 100%;
+  height: 100%;
+  fill: #4a90e2;
+  stroke: #333;
+  stroke-width: 2;
 }
 
 .boy-fill {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    overflow: hidden;
-    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 2;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: 2;
+  /* Animation and clip-path handled by JS and animation classes */
 }
 
-        .bar-item-boy {
-            position: relative;
-            margin-bottom: 15px;
-            width: 100%;
-        }
-        
-        .boy-silhouette {
-            position: relative;
-            height: 200px;
-            margin: 0 auto;
-            overflow: hidden;
-        }
-        
-        .boy-fill {
-            clip-path: inset(var(--target-inset-boy) 0 0 0);
-            transition: clip-path 1.5s ease-out;
-        }
-        
-        .animate-fill-boy {
-            clip-path: inset(0 0 0 0);
-        }
-        
-        .category-label-boy {
-            text-align: center;
-            margin-top: 5px;
-            font-weight: bold;
-        }
-        
-        .percent-label-boy {
-            position: absolute;
-            top: 50%;
-            right: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 24px;
-            font-weight: bold;
-            color: white;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-        }
-@keyframes fillAnimation {
-    from {
-        clip-path: inset(100% 0 0 0); /* Start empty */
-    }
-    to {
-        clip-path: inset(var(--target-inset, 0) 0 0 0); /* Only fill to target percentage */
-    }
+.boy-fill svg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  bottom: 0;
 }
 
-.animate-fill {
-    animation: fillAnimation 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+.boy-outline-container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
 }
-/* Add to your styles.css file */
+
+.boy-outline-container svg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+.boy-fill.animate-fill-boy {
+  animation: fill-animate-boy 2.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fill-animate-boy {
+  from {
+    clip-path: inset(var(--start-inset) 0 0 0);
+  }
+  to {
+    clip-path: inset(var(--target-inset) 0 0 0);
+  }
+}
+
+.bar-item-boy {
+  position: relative;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.boy-silhouette {
+  position: relative;
+  height: 200px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+
+.category-label-boy {
+  text-align: center;
+  margin-top: 5px;
+  font-weight: bold;
+}
+
+.percent-label-boy {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
 .next-button {
   display: block;
   margin: 15px auto;
@@ -497,49 +639,47 @@ h1 { text-align: center; margin-bottom: 10px; }
 .column-header {
   position: sticky;
   top: 0;
-  z-index: 100;  /* Higher z-index to stay above chart */
+  z-index: 100;
   background-color: white;
   padding: 15px 0;
   font-weight: bold;
   font-size: 1.2rem;
   text-align: center;
   border-bottom: 2px solid #100c0e;
-  margin-bottom: 0; /* Remove bottom margin */
+  margin-bottom: 0;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 /* Make chart container sticky just below the header */
 .chart-container {
   position: sticky;
-  top: 52px; /* This should be the height of your header (adjust as needed) */
-  z-index: 90; /* Lower z-index than header */
+  top: 52px;
+  z-index: 90;
   background-color: white;
   padding: 10px;
   border-radius: 8px;
-  margin-top: 10px; /* Add space between header and chart */
+  margin-top: 10px;
   margin-bottom: 20px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-/* Make chart container sticky just below the header */
 .chart-containerBoy {
   position: sticky;
-  top: 52px; /* This should be the height of your header (adjust as needed) */
-  z-index: 90; /* Lower z-index than header */
+  top: 52px;
+  z-index: 90;
   background-color: white;
   padding: 10px;
   border-radius: 8px;
-  margin-top: 10px; /* Add space between header and chart */
+  margin-top: 10px;
   margin-bottom: 20px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
-/* Remove conflicting styles */
+
 .journey-column.female .chart-container {
-  /* Keep margin-bottom but don't adjust other positioning */
   margin-bottom: 20px;
 }
+
 .journey-column.male.chart-containerBoy {
-    /* Keep margin-bottom but don't adjust other positioning */
   margin-bottom: 20px;
 }
 
@@ -555,7 +695,6 @@ h1 { text-align: center; margin-bottom: 10px; }
   filter: blur(0);
 }
 
-
 #next-button-container {
   position: absolute;
   left: 50%;
@@ -568,6 +707,7 @@ h1 { text-align: center; margin-bottom: 10px; }
   z-index: 150;
   width: max-content;
 }
+
 #next-button-container {
   text-align: center;
   margin: 20px 0;
@@ -575,7 +715,6 @@ h1 { text-align: center; margin-bottom: 10px; }
   background-color: rgba(255, 255, 255, 0.9);
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  /* Keep the other existing properties */
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -643,12 +782,11 @@ h1 { text-align: center; margin-bottom: 10px; }
   position: sticky;
   top: 0;
   z-index: 10;
-  background-color: #fff; /* Or match your page background */
+  background-color: #fff;
   padding: 10px 0;
 }
 
 /* Add these styles for the intro typing effect */
-
 .story-intro-container {
   position: fixed;
   top: 0;
@@ -663,7 +801,7 @@ h1 { text-align: center; margin-bottom: 10px; }
   padding: 2rem;
   z-index: 1000;
   transition: opacity 0.8s ease-in-out, visibility 0.8s;
-  overflow-y: auto; /* Allow scrolling if content is too tall */
+  overflow-y: auto;
 }
 
 .intro-headers {
@@ -698,6 +836,7 @@ h1 { text-align: center; margin-bottom: 10px; }
   display: flex;
   flex-direction: column;
 }
+
 .journey-column .stage-headers {
   height: 300px;
   display: flex;
@@ -705,12 +844,13 @@ h1 { text-align: center; margin-bottom: 10px; }
   justify-content: space-between;
   margin-bottom: 10px;
 }
+
 .journey-column .stage-info {
   flex: 1;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-  padding-right: 10px; /* Add some padding for the scrollbar */
+  padding-right: 10px;
 }
 
 /* Optional: Add a subtle scrollbar styling */
@@ -722,34 +862,34 @@ h1 { text-align: center; margin-bottom: 10px; }
   background-color: rgba(0,0,0,0.2);
   border-radius: 3px;
 }
-    .journey-column.stage-headers .stage {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 110px;
-      font-weight: bold;
-      font-size: 1.2em;
-      text-align: center;
-      background: #f7f7f7;
-      border-radius: 8px;
-      margin: 10px 0;
-      min-height: 70px;
-    }
+
+.journey-column.stage-headers .stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 110px;
+  font-weight: bold;
+  font-size: 1.2em;
+  text-align: center;
+  background: #f7f7f7;
+  border-radius: 8px;
+  margin: 10px 0;
+  min-height: 70px;
+}
 
 .chart-spacer {
   width: 100%;
-  height: 200px; /* Base height that will be adjusted with JS */
+  height: 200px;
   background-color: transparent;
   border-radius: 8px;
 }
 
 .center-column {
-    width: 200px; /* Adjust the width as needed */
-    background-color: #f8f9fa; /* Light background color */
-    border: 1px solid #dee2e6; /* Border to define the edges */
-    padding: 10px; /* Padding for inner spacing */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for depth */
-
+  width: 200px;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Central navigation column */
@@ -783,7 +923,7 @@ h1 { text-align: center; margin-bottom: 10px; }
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 70px; /* Space for the header */
+  padding-top: 70px;
 }
 
 /* Stage-specific positioning adjustments */
@@ -815,7 +955,7 @@ h1 { text-align: center; margin-bottom: 10px; }
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 320px; /* Increased from 50px to align with first stage */
+  padding-top: 320px;
 }
 
 /* Enhanced Navigation Styling */
@@ -864,7 +1004,7 @@ h1 { text-align: center; margin-bottom: 10px; }
   transform: scale(1.15);
   box-shadow: 0 8px 24px rgba(174, 91, 229, 0.4), 0 0 0 5px rgba(91,134,229,0.1);
   border: 2px solid white;
-   filter: blur(0);
+  filter: blur(0);
 }
 
 .nav-circle.active::after {
@@ -875,11 +1015,8 @@ h1 { text-align: center; margin-bottom: 10px; }
   border-radius: 50%;
   border: 3px solid transparent;
   background: linear-gradient(135deg, #36d1dc, #5b86e5) border-box;
-  -webkit-mask: 
-    linear-gradient(#fff 0 0) padding-box, 
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
   animation: rotate 4s linear infinite;
   z-index: -1;
   top: -5px;
@@ -986,22 +1123,22 @@ h1 { text-align: center; margin-bottom: 10px; }
 
 /* Add these styles for the conclusion typewriter effects */
 .journey-conclusion {
-  display: none; /* Initially hidden until button is clicked */
+  display: none;
 }
 
-.journey-conclusion p, 
+.journey-conclusion p,
 .journey-conclusion .call-to-action {
-  display: none; /* Hide all paragraphs initially */
+  display: none;
   animation: fadeIn 0.8s ease-in-out;
 }
 
-.journey-conclusion p.visible, 
+.journey-conclusion p.visible,
 .journey-conclusion .call-to-action.visible {
-  display: block; /* Show when visible class is added */
+  display: block;
 }
 
 .journey-conclusion .action-steps {
-  display: none; /* Hide action steps initially */
+  display: none;
   animation: fadeIn 0.8s ease-in-out;
 }
 
@@ -1132,3 +1269,61 @@ h1 { text-align: center; margin-bottom: 10px; }
   transform: scale(1.05);
   box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
+
+/* Speed indicator for typewriter effect */
+.speed-indicator {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: rgba(91, 134, 229, 0.8);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  z-index: 1000;
+  transition: opacity 0.5s;
+  animation: fadeIn 0.3s;
+}
+
+.speed-indicator.fade-out {
+  opacity: 0;
+}
+
+/* Fun back to journey button */
+.back-to-journey-container {
+  text-align: center;
+  margin: 40px 0 20px;
+}
+
+.back-to-journey-btn {
+  background: linear-gradient(135deg, #ff69b4, #9f47e8);
+  color: white;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(159, 71, 232, 0.3);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.back-to-journey-btn:hover {
+  transform: scale(1.05) rotate(-2deg);
+  box-shadow: 0 6px 16px rgba(159, 71, 232, 0.5);
+  background: linear-gradient(135deg, #ff69b4, #6a5acd);
+}
+
+.button-icon {
+  font-size: 20px;
+  display: inline-block;
+  transition: transform 0.5s ease;
+}
+
+.back-to-journey-btn:hover .button-icon {
+  transform: rotate(-360deg);
+}
+

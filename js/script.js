@@ -1,3 +1,7 @@
+// Track current fill percentage for animation
+let currentGirlPercent = 100;
+let currentBoyPercent = 100;
+
 // In the script section, change the colors array
 const colors = [
     'linear-gradient(180deg, #ff9ed8, #ff69b4)', // Pink gradient
@@ -33,23 +37,20 @@ function updateChartGirl(percent = 100) {
     // Create fill (the colored part)
     const fill = document.createElement('div');
     fill.className = 'girl-fill';
-    fill.style.setProperty('--target-inset', `${100 - clampedPercentage}%`);
     fill.innerHTML = createGirlSVG();
     fill.querySelector('svg path').style.fill = 'rgb(40, 65, 124)';
     fill.querySelector('svg path').style.stroke = 'none';
 
-    // Add animation class
+    // Set the CSS variable for animation start and end points
+    fill.style.setProperty('--start-inset', `${100-currentGirlPercent}%`);
+    fill.style.setProperty('--target-inset', `${100-clampedPercentage}%`);
+
+    // Remove and re-add animation class for smooth retrigger
+    fill.classList.remove('animate-fill');
+    void fill.offsetWidth; // Force reflow
     setTimeout(() => {
         fill.classList.add('animate-fill');
-    }, 200);
-
-    // Set the CSS variable for animation end point
-    fill.style.setProperty('--target-inset', `${100 - clampedPercentage}%`);
-
-    // Add animation class
-    setTimeout(() => {
-        fill.classList.add('animate-fill');
-    }, 200);
+    }, 20);
 
     silhouette.appendChild(outline);
     silhouette.appendChild(shadow);
@@ -70,6 +71,9 @@ function updateChartGirl(percent = 100) {
     barItem.appendChild(percentLabel); // Add the percent label
     barItem.appendChild(categoryLabel);
     container.appendChild(barItem);
+
+    // Update the current percent for next animation
+    currentGirlPercent = clampedPercentage;
 }
 
 function updateChartBoy(percent = 100) {
@@ -91,10 +95,9 @@ function updateChartBoy(percent = 100) {
     outline.innerHTML = createBoySVG();
     outline.querySelector('svg path').style.fill = 'transparent';
 
-        // Create shadow effect
+    // Create shadow effect
     const shadow = document.createElement('div');
     shadow.className = 'boy-fill';
-
     shadow.innerHTML = createBoySVG();
     shadow.querySelector('svg path').style.fill = 'rgb(224, 165, 239)';
     shadow.querySelector('svg path').style.stroke = 'none';
@@ -102,26 +105,23 @@ function updateChartBoy(percent = 100) {
     // Create fill (the colored part)
     const fill = document.createElement('div');
     fill.className = 'boy-fill';
-    fill.style.setProperty('--target-inset', `${100 - clampedPercentage}%`);
     fill.innerHTML = createBoySVG();
     fill.querySelector('svg path').style.fill = 'palevioletred';
     fill.querySelector('svg path').style.stroke = 'none';
 
-    // Add animation class
-    setTimeout(() => {
-        fill.classList.add('animate-fill-boy');
-    }, 200);
-
-    // Set the CSS variable for animation end point
+    // Set the CSS variable for animation start and end points
+    fill.style.setProperty('--start-inset', `${100 - currentBoyPercent}%`);
     fill.style.setProperty('--target-inset', `${100 - clampedPercentage}%`);
 
-    // Add animation class
+    // Remove and re-add animation class for smooth retrigger
+    fill.classList.remove('animate-fill-boy');
+    void fill.offsetWidth; // Force reflow
     setTimeout(() => {
-        fill.classList.add('animate-fill');
-    }, 200);
+        fill.classList.add('animate-fill-boy');
+    }, 20);
 
     silhouette.appendChild(outline);
-     silhouette.appendChild(shadow);
+    silhouette.appendChild(shadow);
     silhouette.appendChild(fill);
 
     const percentLabel = document.createElement('div');
@@ -139,6 +139,9 @@ function updateChartBoy(percent = 100) {
     barItem.appendChild(percentLabel); // Add the percent label
     barItem.appendChild(categoryLabel);
     container.appendChild(barItem);
+
+    // Update the current percent for next animation
+    currentBoyPercent = clampedPercentage;
 }
 document.addEventListener('DOMContentLoaded', function() {
   const introText = [
@@ -256,40 +259,41 @@ function initializeNavigation() {
   const navCircles = document.querySelectorAll('.nav-circle');
   const femaleStages = document.querySelector('.journey-column.female').querySelectorAll('.stage');
   const maleStages = document.querySelector('.journey-column.male').querySelectorAll('.stage');
-  
+  let currentStageIndex = 0;
+  let isProgrammaticNav = false; // Prevent scroll loop
+
   // Function to update active stage
-  function navigateToStage(stageIndex) {
-    // Update nav circles
+  function navigateToStage(stageIndex, scroll = true) {
+    if (stageIndex < 0 || stageIndex >= navCircles.length) return;
+    currentStageIndex = stageIndex;
+    // Update nav circles with smooth highlight
     navCircles.forEach((circle, index) => {
       if (index === stageIndex) {
-        circle.classList.add('active');
+        circle.classList.add('active', 'nav-animate');
       } else {
-        circle.classList.remove('active');
+        circle.classList.remove('active', 'nav-animate');
       }
     });
-    
     // Update female stages
     femaleStages.forEach((stage, index) => {
       if (index === stageIndex) {
-        stage.classList.add('active-stage');
+        stage.classList.add('active-stage', 'stage-animate');
         stage.classList.remove('inactive-stage');
       } else {
-        stage.classList.remove('active-stage');
+        stage.classList.remove('active-stage', 'stage-animate');
         stage.classList.add('inactive-stage');
       }
     });
-    
     // Update male stages
     maleStages.forEach((stage, index) => {
       if (index === stageIndex) {
-        stage.classList.add('active-stage');
+        stage.classList.add('active-stage', 'stage-animate');
         stage.classList.remove('inactive-stage');
       } else {
-        stage.classList.remove('active-stage');
+        stage.classList.remove('active-stage', 'stage-animate');
         stage.classList.add('inactive-stage');
       }
     });
-    
     // Update charts based on financial independence data
     const femaleFinancialLabel = femaleStages[stageIndex].querySelector('.financial-label');
     if (femaleFinancialLabel) {
@@ -298,7 +302,6 @@ function initializeNavigation() {
         updateChartGirl(parseInt(percentText[0]));
       }
     }
-    
     const maleFinancialLabel = maleStages[stageIndex].querySelector('.financial-label');
     if (maleFinancialLabel) {
       const percentText = maleFinancialLabel.textContent.match(/\d+/);
@@ -306,27 +309,44 @@ function initializeNavigation() {
         updateChartBoy(parseInt(percentText[0]));
       }
     }
-    
-    // Scroll to bring current stage into view
-    const currentStage = femaleStages[stageIndex];
-    currentStage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    // Removed scrollIntoView for active stage
   }
-  
   // Add click handlers to nav circles
   navCircles.forEach((circle) => {
     circle.addEventListener('click', function() {
       const stageIndex = parseInt(this.getAttribute('data-stage'));
       navigateToStage(stageIndex);
     });
+    // Make nav circles keyboard accessible
+    circle.setAttribute('tabindex', '0');
+    circle.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        const stageIndex = parseInt(this.getAttribute('data-stage'));
+        navigateToStage(stageIndex);
+      }
+    });
   });
-  
+  // Keyboard navigation for left/right arrows
+  document.addEventListener('keydown', function(e) {
+    if (document.activeElement.classList.contains('nav-circle')) {
+      if (e.key === 'ArrowRight') {
+        navigateToStage(Math.min(currentStageIndex + 1, navCircles.length - 1));
+        navCircles[Math.min(currentStageIndex + 1, navCircles.length - 1)].focus();
+      } else if (e.key === 'ArrowLeft') {
+        navigateToStage(Math.max(currentStageIndex - 1, 0));
+        navCircles[Math.max(currentStageIndex - 1, 0)].focus();
+      }
+    }
+  });
   // Initialize first stage
   navigateToStage(0);
 }
-
-// Call the navigation initialization when DOM is loaded
+// Only call navigation initialization once after DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
-  setTimeout(initializeNavigation, 1000);
+  setTimeout(() => {
+    initializeNavigation();
+    // ...existing code...
+  }, 1000);
 });
 
 // Function to match the height of the chart spacer with chart containers
@@ -389,108 +409,8 @@ document.addEventListener('DOMContentLoaded', function() {
         matchChartSpacerHeight();
         matchStageHeights();
       });
-      
-      // Initialize scroll navigation
-      initScrollNavigation();
     }, 500);
   }, 800);
-});
-
-// Add this function to handle scroll-based navigation
-function initScrollNavigation() {
-  const femaleStages = document.querySelector('.journey-column.female').querySelectorAll('.stage');
-  const navCircles = document.querySelectorAll('.nav-circle');
-  
-  // Create options for the observer
-  const options = {
-    root: null, // viewport is the root
-    rootMargin: '0px',
-    threshold: 0.3 // trigger when 60% of the element is visible
-  };
-  
-  // Keep track of currently active section to avoid unnecessary updates
-  let currentActiveIndex = 0;
-  
-  // Create the observer
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        // Find which stage was intersected
-        const targetStage = entry.target;
-        const stageIndex = Array.from(femaleStages).indexOf(targetStage);
-        
-        // Only update if it's a different section
-        if (stageIndex !== currentActiveIndex) {
-          currentActiveIndex = stageIndex;
-          
-          // Update the navigation without scrolling (to avoid loops)
-          updateNavigationOnly(stageIndex);
-        }
-      }
-    });
-  }, options);
-  
-  // Observe all stage elements
-  femaleStages.forEach(stage => {
-    observer.observe(stage);
-  });
-  
-  // Function to update navigation only (without scrolling)
-  function updateNavigationOnly(stageIndex) {
-    // Update nav circles
-    navCircles.forEach((circle, index) => {
-      if (index === stageIndex) {
-        circle.classList.add('active');
-      } else {
-        circle.classList.remove('active');
-      }
-    });
-    
-    // Update female stages
-    femaleStages.forEach((stage, index) => {
-      if (index === stageIndex) {
-        stage.classList.add('active-stage');
-        stage.classList.remove('inactive-stage');
-      } else {
-        stage.classList.remove('active-stage');
-        stage.classList.add('inactive-stage');
-      }
-    });
-    
-    // Update male stages
-    const maleStages = document.querySelector('.journey-column.male').querySelectorAll('.stage');
-    maleStages.forEach((stage, index) => {
-      if (index === stageIndex) {
-        stage.classList.add('active-stage');
-        stage.classList.remove('inactive-stage');
-      } else {
-        stage.classList.remove('active-stage');
-        stage.classList.add('inactive-stage');
-      }
-    });
-    
-    // Update charts based on financial independence data
-    const femaleFinancialLabel = femaleStages[stageIndex].querySelector('.financial-label');
-    if (femaleFinancialLabel) {
-      const percentText = femaleFinancialLabel.textContent.match(/\d+/);
-      if (percentText) {
-        updateChartGirl(parseInt(percentText[0]));
-      }
-    }
-    
-    const maleFinancialLabel = maleStages[stageIndex].querySelector('.financial-label');
-    if (maleFinancialLabel) {
-      const percentText = maleFinancialLabel.textContent.match(/\d+/);
-      if (percentText) {
-        updateChartBoy(parseInt(percentText[0]));
-      }
-    }
-  }
-}
-
-// Initialize scroll navigation after a delay
-document.addEventListener('DOMContentLoaded', function() {
-  setTimeout(initScrollNavigation, 1000);
 });
 
 // Add this to your code for more reliable height detection
@@ -723,11 +643,23 @@ function skipToConclusion() {
 
 }
 
-// Function to apply typewriter effect sequentially to multiple elements
+// Add a global variable to track speed multiplier
+let typewriterSpeedMultiplier = 1.0;
+
+// Updated sequentialTypewriter function with speed control
 function sequentialTypewriter(elements, currentIndex, finalCallback) {
   if (currentIndex >= elements.length) {
     if (finalCallback) finalCallback();
+    // Remove the Enter key event listener when all typing is done
+    document.removeEventListener('keydown', handleEnterKeyForTypewriter);
     return;
+  }
+  
+  // Add an event listener for Enter key if this is the first element
+  if (currentIndex === 0) {
+    // Reset speed multiplier for new sequence
+    typewriterSpeedMultiplier = 1.0;
+    document.addEventListener('keydown', handleEnterKeyForTypewriter);
   }
   
   const element = elements[currentIndex];
@@ -739,13 +671,14 @@ function sequentialTypewriter(elements, currentIndex, finalCallback) {
   element.classList.add('typewriter-text');
   
   let i = 0;
-  const speed = 20; // typing speed in milliseconds
+  const baseSpeed = 20; // base typing speed in milliseconds
   
   function typeWriter() {
     if (i < text.length) {
       element.textContent += text.charAt(i);
       i++;
-      setTimeout(typeWriter, speed);
+      // Use the current speed multiplier to determine actual speed
+      setTimeout(typeWriter, baseSpeed / typewriterSpeedMultiplier);
     } else {
       // Remove the typewriter class when done
       element.classList.remove('typewriter-text');
@@ -759,3 +692,35 @@ function sequentialTypewriter(elements, currentIndex, finalCallback) {
   
   typeWriter();
 }
+
+// Function to handle Enter key for speeding up typewriter
+function handleEnterKeyForTypewriter(event) {
+  if (event.key === 'Enter') {
+    // Increase speed by 10% each time Enter is pressed
+    typewriterSpeedMultiplier *= 1.1;
+    
+    // Create a brief visual indicator that speed has increased
+    const speedIndicator = document.createElement('div');
+    speedIndicator.className = 'speed-indicator';
+    speedIndicator.textContent = `Speed: ${typewriterSpeedMultiplier.toFixed(1)}x`;
+    document.body.appendChild(speedIndicator);
+    
+    // Remove the indicator after a brief moment
+    setTimeout(() => {
+      speedIndicator.classList.add('fade-out');
+      setTimeout(() => speedIndicator.remove(), 500);
+    }, 800);
+  }
+}
+
+// Simplified back to journey functionality with page reload
+document.addEventListener('DOMContentLoaded', function() {
+  const backToJourneyBtn = document.getElementById('back-to-journey-btn');
+  
+  if (backToJourneyBtn) {
+    backToJourneyBtn.addEventListener('click', function() {
+      // Simply reload the page
+      location.reload();
+    });
+  }
+});
